@@ -1,0 +1,16 @@
+{
+  "name": "penalty-creator-video",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "render": "remotion render src/index.jsx Creator public/master-silent.mp4 --concurrency=2 --crf=17 --codec=h264 --pixel-format=yuv420p",
+    "test": "node --test src/timeline.test.mjs"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.361",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "remotion": "4.0.361"
+  }
+}

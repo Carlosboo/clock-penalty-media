@@ -1,0 +1,28 @@
+{
+  "mode": "generate",
+  "voice": {
+    "id": "kw0sLdKrFNCRhdRYGrhU",
+    "name": "Pedro - Spanish Clear Narrator",
+    "language": "es",
+    "accent": "peninsular",
+    "gender": "male",
+    "category": "professional"
+  },
+  "scenes": [
+    ["Te enseño cómo poner la beta en tu móvil.", "No necesitas buscarla en ninguna tienda."],
+    [
+      "En iPhone, abre el enlace del perfil en Safari, no dentro de Instagram.",
+      "Abre el menú del navegador y toca Compartir."
+    ],
+    ["Elige Añadir a pantalla de inicio.", "Confirma en Añadir y ya tendrás el icono."],
+    [
+      "En Android, abre la web en Chrome y toca los tres puntos.",
+      "Busca Instalar aplicación, o Añadir a pantalla de inicio."
+    ],
+    [
+      "Confirma la instalación y abre Penalty desde el icono.",
+      "El nombre de la opción puede variar según tu móvil."
+    ],
+    ["Ya puedes probar el juego.", "Si algo no funciona, escríbeme y dime qué móvil usas."]
+  ]
+}

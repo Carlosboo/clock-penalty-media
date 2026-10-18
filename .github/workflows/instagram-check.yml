@@ -1,0 +1,86 @@
+name: Check Instagram access
+
+# Manual, read-only check of our own account. Does not publish or renew tokens.
+# Requires the repository secret INSTAGRAM_ACCESS_TOKEN. Run from Actions.
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: Verify account and publishing access
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import { appendFileSync } from 'node:fs';
+
+          const token = process.env.INSTAGRAM_ACCESS_TOKEN?.trim();
+          if (!token) {
+            console.error('Missing repository secret INSTAGRAM_ACCESS_TOKEN.');
+            process.exit(1);
+          }
+
+          async function get(path, query = {}) {
+            const url = new URL(`https://graph.instagram.com/v25.0/${path}`);
+            url.search = new URLSearchParams(query).toString();
+            const response = await fetch(url, {
+              headers: { Authorization: `Bearer ${token}` },
+              signal: AbortSignal.timeout(20000),
+              redirect: 'error',
+            });
+            let body;
+            try {
+              body = await response.json();
+            } catch {
+              throw new Error(`Instagram returned non-JSON data (HTTP ${response.status}).`);
+            }
+            if (!response.ok || body.error) {
+              const code = Number.isInteger(body.error?.code) ? body.error.code : 'unknown';
+              const subcode = Number.isInteger(body.error?.error_subcode)
+                ? body.error.error_subcode : 'none';
+              throw new Error(`Instagram request failed (HTTP ${response.status}, code ${code}, subcode ${subcode}).`);
+            }
+            return body;
+          }
+
+          try {
+            const account = await get('me', { fields: 'user_id,username' });
+            if (account.username !== 'clock.penalty'
+                || String(account.user_id) !== '17841459544818975') {
+              throw new Error('Token does not identify the expected clock.penalty account.');
+            }
+            console.log('PASS: token identifies clock.penalty.');
+
+            // This read-only endpoint requires both basic and content_publish.
+            // https://developers.facebook.com/documentation/instagram-platform/instagram-graph-api/reference/ig-user/content_publishing_limit/
+            const limit = await get(`${account.user_id}/content_publishing_limit`, {
+              fields: 'quota_usage,config',
+            });
+            if (!Array.isArray(limit.data) || limit.data.length === 0
+                || !Number.isFinite(limit.data[0].quota_usage)) {
+              throw new Error('Instagram returned an unexpected publishing-limit response.');
+            }
+            console.log(`PASS: publishing endpoint accessible; quota usage ${limit.data[0].quota_usage}.`);
+            appendFileSync(process.env.GITHUB_STEP_SUMMARY,
+              '## Instagram: comprobacion correcta\n\n'
+              + '- Cuenta: **@clock.penalty**.\n'
+              + '- Acceso correcto al endpoint que exige permisos basico y de publicacion.\n'
+              + '- Consulta de limite de publicacion correcta.\n'
+              + '- No se ha creado ni publicado contenido.\n\n'
+              + 'Esto valida acceso y permisos, no una publicacion real ni la renovacion del token.\n');
+          } catch (error) {
+            // Never log response bodies, request headers or raw transport errors.
+            const safeMessage = error instanceof Error
+              && /^(Instagram |Token |Required permission)/.test(error.message)
+              ? error.message.replaceAll(token, '[REDACTED]')
+              : 'Network or validation failure; no credentials were logged.';
+            console.error(safeMessage);
+            process.exitCode = 1;
+          }
+          NODE

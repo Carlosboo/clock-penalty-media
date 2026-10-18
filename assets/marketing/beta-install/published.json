@@ -1,0 +1,25 @@
+{
+  "account": "clock.penalty",
+  "publishedAt": "2026-10-16T19:23:39.830Z",
+  "workflowRun": "https://github.com/Carlosboo/penalty/actions/runs/38954415255",
+  "carousel": {
+    "id": "18126630733893322",
+    "url": "https://www.instagram.com/p/DekRlwOFnJ8/",
+    "slides": 6,
+    "pinned": false
+  },
+  "stories": [
+    "17902418607374472",
+    "17954563458270965",
+    "17986782915083141",
+    "18154135558568169",
+    "18116292503517544"
+  ],
+  "initialPost": {
+    "url": "https://www.instagram.com/clock.penalty/p/DehivP4jChd/",
+    "pinStatus": "not_verified"
+  },
+  "highlightStatus": "pending_authenticated_instagram_session",
+  "pinStatus": "pending_authenticated_instagram_session",
+  "publicMediaRevision": "4cd94cd34507c616de3066604f4fb51fcbadb671"
+}

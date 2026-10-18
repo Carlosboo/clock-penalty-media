@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+node_modules/
+assets/marketing/beta-install-video/
+assets/marketing/creator-pilot/
+assets/marketing/creator-pilot-v2/
+assets/marketing/gameplay-ad/
+assets/marketing/intro-video/
+assets/marketing/social-intro/
+assets/marketing/beta-install/stories/
+assets/marketing/beta-install/pinned-carousel/

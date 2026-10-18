@@ -1,0 +1,40 @@
+{
+  "mode": "hold",
+  "attempt": 2,
+  "domain": "clockpenalty.com",
+  "mediaCommit": "d81268a30104bd7b8689e00b8eb48ae3afa3b7b7",
+  "items": [
+    {
+      "key": "presentacion",
+      "kind": "REELS",
+      "file": "presentacion.mp4",
+      "bytes": 5212339,
+      "sha256": "52c3bdc68bebcdafbc7c960b44edfc18343fc99e1a1187c0c75ca6b27582f95d",
+      "caption": "Estoy haciendo un juego de fútbol en el que no chutas. Paras un reloj.\n\nSi lo paras en .00, marcas. Si cae en .99, tienes un penalti: vuelves a parar y las centésimas deciden. Par, gol. Impar, fallo.\n\nDe momento puedes probar la beta contra un bot. La idea es acabar jugando partidos y ligas con los colegas.\n\nLo estoy construyendo y voy enseñando cómo va. Si lo pruebas, dime qué cambiarías.\n\n👉 https://clockpenalty.com — enlace en mi perfil.\n\nVídeo con locución sintética de ElevenLabs."
+    },
+    {
+      "key": "tutorial",
+      "kind": "REELS",
+      "file": "tutorial.mp4",
+      "bytes": 4052373,
+      "sha256": "3e5d71118f035cc1c897552cd9b4ad6389e45b1b4bcc5987c63b078690448aa7",
+      "caption": "Así puedes instalar la beta de Clock Penalty en tu móvil 📲\n\nAbre https://clockpenalty.com en el navegador, no dentro de Instagram.\n\n🍎 iPhone: Safari → menú/Compartir → Añadir a pantalla de inicio → Añadir.\n🤖 Android: Chrome → ⋮ → Instalar aplicación o Añadir a pantalla de inicio → confirmar.\n\nNo necesitas buscarla en App Store ni Play Store: es una web app de prueba añadida a Inicio. Las opciones pueden variar según tu móvil.\n\nAndroid se muestra con ilustraciones orientativas. Si algo no funciona, escríbeme qué móvil y navegador usas.\n\nLocución sintética de ElevenLabs."
+    },
+    {
+      "key": "historia-iphone",
+      "kind": "STORIES",
+      "file": "iphone.mp4",
+      "bytes": 1344197,
+      "sha256": "1e675aac8a2b295acc565e8053e819006dcc67687cfab6b8a12874e0b4c8281c",
+      "caption": ""
+    },
+    {
+      "key": "historia-android",
+      "kind": "STORIES",
+      "file": "android.mp4",
+      "bytes": 1354501,
+      "sha256": "5e6b6a74ce02c8a210827f28ccdd958eaaa842a0af8817c95ceefd5a48118a68",
+      "caption": ""
+    }
+  ]
+}

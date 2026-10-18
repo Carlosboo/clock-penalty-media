@@ -1,0 +1,28 @@
+{
+  "mode": "generate",
+  "voice": {
+    "id": "kw0sLdKrFNCRhdRYGrhU",
+    "name": "Pedro - Spanish Clear Narrator",
+    "language": "es",
+    "accent": "peninsular",
+    "gender": "male",
+    "category": "professional"
+  },
+  "scenes": [
+    ["Estoy haciendo un juego de fútbol.", "Pero aquí no se chuta. Se para un reloj."],
+    ["Si lo clavas en punto cero cero, marcas.", "Es fácil de entender. Acertar ya es otra cosa."],
+    [
+      "Si paras en punto noventa y nueve, tienes un penalti.",
+      "Vuelves a parar: centésimas pares, gol. Impares, fallo."
+    ],
+    ["Cada posesión cuenta.", "Tú decides cuándo parar el reloj."],
+    [
+      "Ya puedes probar la beta contra un bot.",
+      "La idea es acabar jugando partidos y ligas con los colegas."
+    ],
+    [
+      "Entra en clock penalty punto com. Tienes el enlace en mi perfil.",
+      "Lo estoy construyendo. Si lo pruebas, dime qué mejorarías."
+    ]
+  ]
+}
