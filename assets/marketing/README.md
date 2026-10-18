@@ -2,7 +2,7 @@
 
 ## Ediciones mas dinamicas
 
-`render_dynamic_editions.py` crea solo la presentacion a velocidad 1,15x desde
+`render_dynamic_editions.py` crea solo la presentacion a velocidad 1,30x desde
 el master aprobado de `relaunch/`, sin volver a consumir ElevenLabs.
 FFmpeg `atempo` mantiene el tono de voz; `setpts` acelera la imagen y los
 subtitulos incrustados en la misma proporcion. Los originales no se modifican.

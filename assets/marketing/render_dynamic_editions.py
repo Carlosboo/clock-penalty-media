@@ -14,7 +14,7 @@ import render_beta_install_video as video
 REPO = Path(__file__).resolve().parents[2]
 OUT = REPO / "relaunch-dynamic"
 DEST = video.WINDOWS / "instagram-version-dinamica"
-SPEED = 1.15
+SPEED = 1.30
 LABELS = {
     "presentacion": ("NO CHUTAS.", "PARAS EL RELOJ.", "Así es Clock Penalty"),
 }
