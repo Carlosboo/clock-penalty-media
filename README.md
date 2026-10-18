@@ -4,12 +4,12 @@
 
 El 18/10/2026 se sustituyeron los reels archivados por el usuario:
 
-- [Presentacion a 1,15x con portada](https://www.instagram.com/reel/DepUeYLGiA0/) (52,4 s).
-- [Tutorial a velocidad original con portada](https://www.instagram.com/reel/DepUpVfASZ5/) (58,3 s).
+- [Presentacion final a 1,30x con portada](https://www.instagram.com/reel/DepXQUmjIlb/) (46,4 s).
+- [Tutorial a velocidad original con portada](https://www.instagram.com/reel/DepXX83j61G/) (58,3 s).
 
 Se enviaron `cover_url` explicitas y se comprobaron las dos portadas en la
 cuadricula del perfil. No se republicaron historias. Recibo independiente:
-`reels-covers-v2.json` en la rama `instagram-relaunch-state`.
+`reels-covers-v3.json` en la rama `instagram-relaunch-state`.
 El workflow `Publish two reels with covers` queda manual y en `hold`.
 La campaña anterior y sus recibos se conservan como historial.
 

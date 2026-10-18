@@ -2,9 +2,6 @@ name: Publish two reels with covers
 
 on:
   workflow_dispatch:
-  push:
-    branches: [reels-final-speed]
-    paths: [.github/workflows/instagram-covers.yml]
 
 permissions:
   contents: write
