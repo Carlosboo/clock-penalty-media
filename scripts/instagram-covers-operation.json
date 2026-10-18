@@ -1,14 +1,14 @@
 {
-  "mode": "hold",
+  "mode": "publish",
   "domain": "clockpenalty.com",
-  "mediaCommit": "9223359fdbfae07d41fdee2355cb5e0cac16312b",
+  "mediaCommit": "e8c166d8f0544264758052cc850799bc6d522305",
   "items": [
     {
       "key": "presentacion",
       "kind": "REELS",
-      "file": "presentacion-dinamica.mp4",
-      "bytes": 5160119,
-      "sha256": "ea552551c49df280708028f3f4e51eec1883e99cedb93f30cb679a191bc1f966",
+      "file": "presentacion-final.mp4",
+      "bytes": 4970436,
+      "sha256": "c6b879a9e2d4f49c67d9b8374e914596d4f74b2cefbc5f20f623f3138c0bb8b3",
       "cover": {
         "file": "portada-presentacion.jpg",
         "bytes": 212165,

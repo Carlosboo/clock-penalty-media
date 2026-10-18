@@ -2,6 +2,9 @@ name: Publish two reels with covers
 
 on:
   workflow_dispatch:
+  push:
+    branches: [reels-final-speed]
+    paths: [.github/workflows/instagram-covers.yml]
 
 permissions:
   contents: write
@@ -49,6 +52,6 @@ jobs:
         env:
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
           PUBLISH_STATE_DIR: ${{ github.workspace }}/state
-          PUBLISH_STATE_FILE: reels-covers-v2.json
+          PUBLISH_STATE_FILE: reels-covers-v3.json
           PUBLISH_REQUEST_FILE: ./instagram-covers-operation.json
         run: node app/scripts/instagram-relaunch.mjs

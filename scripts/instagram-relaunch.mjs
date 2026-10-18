@@ -222,7 +222,7 @@ async function main() {
   const folder = process.env.PUBLISH_STATE_DIR;
   if (!folder) throw new Error("Missing publication state directory.");
   const filename = process.env.PUBLISH_STATE_FILE ?? "relaunch.json";
-  if (!/^(relaunch|reels-covers-v2)\.json$/.test(filename))
+  if (!/^(relaunch|reels-covers-v[23])\.json$/.test(filename))
     throw new Error("Invalid state filename.");
   const path = resolve(folder, filename);
   const state = existsSync(path) ? JSON.parse(readFileSync(path, "utf8")) : {};
