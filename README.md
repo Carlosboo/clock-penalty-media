@@ -41,9 +41,23 @@ https://github.com/Carlosboo/clock-penalty-media/settings/secrets/actions
 
 Nombre: `INSTAGRAM_ACCESS_TOKEN`.
 
-Despues ejecuta **Check Instagram access**. El ultimo intento en el repositorio
-del juego fallo antes de crear contenedores: `API access blocked`.
-La campaña sigue pausada; migrarla no corrige la autorizacion de Meta.
+Despues ejecuta **Check Instagram access**. El intento anterior en el repositorio del juego fallo antes de crear
+contenedores: `API access blocked`. El 18/10/2026, tras restablecer el acceso
+de Meta y configurar el token aqui, la comprobacion y publicacion terminaron
+correctamente:
+
+- [Comprobacion de acceso](https://github.com/Carlosboo/clock-penalty-media/actions/runs/39152423620).
+- [Publicacion verificada](https://github.com/Carlosboo/clock-penalty-media/actions/runs/39152469296).
+- [Presentacion](https://www.instagram.com/reel/DepSNgNFcgh/).
+- [Tutorial](https://www.instagram.com/reel/DepSUsBCowq/).
+- Historias iPhone `18117134008954918` y Android `18110122307099601`.
+
+El recibo durable esta en `instagram-relaunch-state/relaunch.json` (rama de
+estado); `complete: true` y las cuatro entradas verificadas confirman la entrega.
+La campaña ha vuelto a `hold` y los disparadores temporales de comprobacion y
+publicacion se han retirado. No hay trabajos de publicacion en curso.
+La creacion del destacado sigue pendiente: el selector web de historias
+no mostro elementos seleccionables inmediatamente despues de publicarlas.
 
 ## ElevenLabs
 
