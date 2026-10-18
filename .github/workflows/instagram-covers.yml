@@ -1,0 +1,57 @@
+name: Publish two reels with covers
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [reels-with-covers]
+    paths: [.github/workflows/instagram-covers.yml]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: instagram-relaunch
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: app
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+      - name: Check gate
+        id: gate
+        working-directory: app
+        run: |
+          mode=$(node -p "JSON.parse(require('fs').readFileSync('scripts/instagram-covers-operation.json')).mode")
+          if [ "$mode" = "publish" ]; then
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          elif [ "$mode" = "hold" ]; then
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+          else
+            exit 1
+          fi
+      - uses: actions/checkout@v5
+        if: steps.gate.outputs.publish == 'true'
+        with:
+          ref: instagram-relaunch-state
+          path: state
+      - name: Configure checkpoint identity
+        if: steps.gate.outputs.publish == 'true'
+        working-directory: state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Publish two approved reels, no stories
+        if: steps.gate.outputs.publish == 'true'
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          PUBLISH_STATE_DIR: ${{ github.workspace }}/state
+          PUBLISH_STATE_FILE: reels-covers-v2.json
+          PUBLISH_REQUEST_FILE: ./instagram-covers-operation.json
+        run: node app/scripts/instagram-relaunch.mjs
