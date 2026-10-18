@@ -4,6 +4,7 @@ __pycache__/
 .env.*
 !.env.example
 node_modules/
+relaunch-dynamic/
 assets/marketing/beta-install-video/
 assets/marketing/creator-pilot/
 assets/marketing/creator-pilot-v2/

@@ -1,5 +1,21 @@
 # Pilotos de Clock Penalty
 
+## Ediciones mas dinamicas
+
+`render_dynamic_editions.py` crea solo la presentacion a velocidad 1,15x desde
+el master aprobado de `relaunch/`, sin volver a consumir ElevenLabs.
+FFmpeg `atempo` mantiene el tono de voz; `setpts` acelera la imagen y los
+subtitulos incrustados en la misma proporcion. Los originales no se modifican.
+Incluye una portada JPG de presentacion, tambien visible durante el
+primer medio segundo del video. Los titulos principales quedan centrados
+para tolerar recortes de la cuadrícula.
+
+Salida local ignorada: `relaunch-dynamic/`. Copia verificada en Descargas,
+`Clock-Penalty-Anuncios/instagram-version-dinamica`. Valida decodificacion,
+dimensiones, duracion proporcional, audio y hashes. Generar no publica ni
+reemplaza los reels existentes; requiere acordar antes su sustitucion.
+El tutorial y las historias se conservan sin cambios por peticion del usuario.
+
 > Migrado a `Carlosboo/clock-penalty-media`. Las menciones al repositorio del
 > juego y a workflows/ramas de audio mas abajo son historial de produccion,
 > no instrucciones para activar esas automatizaciones. La configuracion actual
