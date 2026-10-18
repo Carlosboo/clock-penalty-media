@@ -24,7 +24,9 @@
     },
     "historia-iphone": {
       "container": "17968410803984828",
-      "attempted": "2026-10-18T18:07:04.586Z"
+      "attempted": "2026-10-18T18:07:04.586Z",
+      "mediaId": "18117134008954918",
+      "published": true
     }
   },
   "mediaCommit": "d81268a30104bd7b8689e00b8eb48ae3afa3b7b7"
