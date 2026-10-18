@@ -4,6 +4,10 @@ name: Check Instagram access
 # Requires the repository secret INSTAGRAM_ACCESS_TOKEN. Run from Actions.
 on:
   workflow_dispatch:
+  push:
+    branches: [instagram-access-check]
+    paths:
+      - .github/workflows/instagram-check.yml
 
 permissions: {}
 
