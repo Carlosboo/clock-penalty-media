@@ -2,10 +2,6 @@ name: Publish Clock Penalty marketing
 
 on:
   workflow_dispatch:
-  push:
-    branches: [instagram-access-check]
-    paths:
-      - .github/workflows/instagram-relaunch.yml
 
 permissions:
   contents: write

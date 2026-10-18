@@ -1,5 +1,5 @@
 {
-  "mode": "publish",
+  "mode": "hold",
   "attempt": 2,
   "domain": "clockpenalty.com",
   "mediaCommit": "d81268a30104bd7b8689e00b8eb48ae3afa3b7b7",
