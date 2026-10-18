@@ -3,7 +3,9 @@
   "items": {
     "presentacion": {
       "container": "17968416914984828",
-      "attempted": "2026-10-18T18:24:46.975Z"
+      "attempted": "2026-10-18T18:24:46.975Z",
+      "mediaId": "18106438562213173",
+      "published": true
     }
   }
 }
