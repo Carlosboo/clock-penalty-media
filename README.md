@@ -1,5 +1,18 @@
 # Clock Penalty: marketing y contenido publico
 
+## Publicaciones actuales con portada
+
+El 18/10/2026 se sustituyeron los reels archivados por el usuario:
+
+- [Presentacion a 1,15x con portada](https://www.instagram.com/reel/DepUeYLGiA0/) (52,4 s).
+- [Tutorial a velocidad original con portada](https://www.instagram.com/reel/DepUpVfASZ5/) (58,3 s).
+
+Se enviaron `cover_url` explicitas y se comprobaron las dos portadas en la
+cuadricula del perfil. No se republicaron historias. Recibo independiente:
+`reels-covers-v2.json` en la rama `instagram-relaunch-state`.
+El workflow `Publish two reels with covers` queda manual y en `hold`.
+La campaña anterior y sus recibos se conservan como historial.
+
 Repositorio independiente del juego para generadores de contenido, pruebas,
 publicaciones y medios publicos de [Clock Penalty](https://clockpenalty.com).
 El codigo del juego sigue en `Carlosboo/penalty`.
