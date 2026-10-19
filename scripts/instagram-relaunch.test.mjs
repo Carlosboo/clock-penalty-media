@@ -112,6 +112,7 @@ test("provider diagnostics redact credentials and changed public files are rejec
       error: { code: 200, message: `API access blocked ${s.token}` },
     }),
   });
+
   await assert.rejects(
     publishCampaign(s),
     (error) =>
@@ -129,6 +130,29 @@ test("uncertain publication never automatically posts again", async () => {
   s.state.items = { "video-0": { container: "1", attempted: "previous" } };
   await assert.rejects(publishCampaign(s), /Uncertain/);
   assert.equal(s.posts.length, 0);
+});
+
+test("approved gameplay campaign publishes exactly one reel with cover and never duplicates", async () => {
+  const s = setup();
+  s.request.items = s.request.items.slice(0, 1);
+  const cover = Buffer.alloc(2000);
+  cover[0] = 255;
+  cover[1] = 216;
+  s.request.items[0].cover = {
+    file: "cover.jpg",
+    bytes: cover.length,
+    sha256: createHash("sha256").update(cover).digest("hex"),
+  };
+  const fetcher = s.fetcher;
+  s.fetcher = (url, options) => String(url).endsWith("/cover.jpg")
+    ? Promise.resolve({ ok: true, arrayBuffer: async () => cover })
+    : fetcher(url, options);
+  await publishCampaign(s);
+  await publishCampaign(s);
+  assert.equal(s.state.complete, true);
+  assert.equal(s.posts.filter(([path]) => path.endsWith("/media_publish")).length, 1);
+  assert.ok(s.posts[0][1].cover_url.endsWith("/cover.jpg"));
+  assert.equal(s.posts[0][1].media_type, "REELS");
 });
 
 test("wrong identity, stale URL and changed media are rejected before publishing", async () => {

@@ -1,0 +1,20 @@
+{
+  "mode": "hold",
+  "domain": "clockpenalty.com",
+  "mediaCommit": "096de6ee8356b711b49056c42ca64b49ee67b644",
+  "items": [
+    {
+      "key": "gameplay",
+      "kind": "REELS",
+      "file": "gameplay.mp4",
+      "bytes": 4852269,
+      "sha256": "a39e67acdd886c1217bdd85ebf51cc851dfc8b9e350aaffd36aa1ccc1edf9fd4",
+      "cover": {
+        "file": "portada-gameplay.jpg",
+        "bytes": 148455,
+        "sha256": "5ca002a6fabdd62aa1ca5a299b26a5a367c2547ca98dd138b4cc309e73cd6d4f"
+      },
+      "caption": "Una centésima. ¿Gol o fallo? ⚽⏱️\n\nEn Clock Penalty no chutas: paras el reloj.\n.00 es gol. .99 es penalti. En el siguiente intento: centésimas pares, gol; impares, fallo.\n\nMira la parada del empate a uno… ¿tú lo clavas?\n\nPrueba la beta en https://clockpenalty.com — enlace en el perfil.\n\nGameplay de una versión de desarrollo: algunas funciones pueden diferir de la beta pública. Nombres y liga anonimizados con alias ficticios. Locución sintética de ElevenLabs.\n\n#ClockPenalty #JuegosDeFutbol #JuegosMoviles"
+    }
+  ]
+}

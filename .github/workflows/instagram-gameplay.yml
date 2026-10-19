@@ -1,0 +1,53 @@
+name: Publish approved gameplay reel
+
+on:
+  workflow_dispatch:
+    inputs:
+      approval:
+        description: "Type PUBLICAR to publish the approved 27-second gameplay reel"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: instagram-relaunch
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: inputs.approval == 'PUBLICAR'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: app
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+      - uses: actions/checkout@v5
+        with:
+          ref: instagram-relaunch-state
+          path: state
+      - name: Configure checkpoint identity
+        working-directory: state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Publish one approved reel with cover, no stories
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          PUBLISH_STATE_DIR: ${{ github.workspace }}/state
+          PUBLISH_STATE_FILE: gameplay-v1.json
+          PUBLISH_REQUEST_FILE: ./instagram-gameplay-operation.json
+        run: |
+          node --input-type=module -e "
+            import { readFileSync, writeFileSync } from 'node:fs';
+            const file = 'app/scripts/instagram-gameplay-operation.json';
+            const request = JSON.parse(readFileSync(file));
+            request.mode = 'publish';
+            writeFileSync(file, JSON.stringify(request));
+          "
+          node app/scripts/instagram-relaunch.mjs
