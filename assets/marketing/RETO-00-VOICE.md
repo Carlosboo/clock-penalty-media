@@ -53,7 +53,9 @@ estereo. La parada y la repeticion se temporizan con los clips de la locucion;
 la repeticion se identifica expresamente. Mantiene el CTA solicitado:
 «Invita a tu amigo a jugar ahora en clockpenalty.com».
 El reproductor HTML y los medios quedan en el directorio privado de salida,
-no en el repositorio publico.
+no en el repositorio publico. El visor ofrece una copia WebM de menor
+resolucion para compatibilidad de navegador y descarga siempre el MP4
+1080x1920; ambos formatos se decodifican completos al exportar.
 
 Pruebas directamente relacionadas:
 

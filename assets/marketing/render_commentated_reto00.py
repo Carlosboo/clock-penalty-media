@@ -253,6 +253,12 @@ def render(source_dir, narration_dir, destination, windows_copy=None):
         or not 20 <= final["duration"] <= 25 or final.get("audio_codec") != "aac"
         or not -18 <= float(levels["input_i"]) <= -14 or float(levels["input_tp"]) > -1):
         raise ValueError(f"Invalid video export: {final}; {levels}")
+    preview = destination/"preview.webm"
+    original.run([ffmpeg, "-v", "error", "-y", "-i", str(video),
+        "-vf", "scale=540:960", "-c:v", "libvpx-vp9", "-deadline", "realtime",
+        "-cpu-used", "6", "-crf", "32", "-b:v", "0", "-threads", "2",
+        "-c:a", "libopus", "-b:a", "128k", str(preview)])
+    original.run([ffmpeg, "-v", "error", "-xerror", "-i", str(preview), "-f", "null", "-"])
     manifest = {"published": False, "status": "private_review", "duration": final["duration"],
         "size": final["size"], "fps": FPS, "cta": CTA, "domain": DOMAIN,
         "voice": receipt["voice"], "narration_speed_factor": speed,
@@ -269,7 +275,8 @@ def render(source_dir, narration_dir, destination, windows_copy=None):
         'video{height:80vh;max-width:95vw}a{color:#73f8c9}</style>'
         '<h1>Reto .00 · Borrador narrado</h1><p>No publicado · Voz ElevenLabs</p>'
         '<p><button id="play">Reproducir desde el principio</button></p>'
-        f'<video controls preload="metadata" src="{html.escape(video.name)}"></video>'
+        '<video controls preload="metadata"><source src="preview.webm" type="video/webm">'
+        f'<source src="{html.escape(video.name)}" type="video/mp4"></video>'
         '<p id="status" role="status">Listo para revisar</p>'
         f'<p><a href="{html.escape(video.name)}">Descargar vídeo</a></p>'
         '<script>const v=document.querySelector("video"),s=document.getElementById("status");'
@@ -280,7 +287,7 @@ def render(source_dir, narration_dir, destination, windows_copy=None):
         'v.onerror=()=>s.textContent="Error de vídeo: "+v.error.code;</script>')
     if windows_copy:
         windows_copy.mkdir(parents=True, exist_ok=True)
-        for name in [video.name, "portada-reto-00-narrado.jpg", "storyboard-reto-00-narrado.jpg",
+        for name in [video.name, preview.name, "portada-reto-00-narrado.jpg", "storyboard-reto-00-narrado.jpg",
                      "ver-video.html", "manifest.json", "caption.txt"]:
             shutil.copy2(destination/name, windows_copy/name)
             if sha256(destination/name) != sha256(windows_copy/name):
