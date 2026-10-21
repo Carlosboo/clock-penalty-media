@@ -1,0 +1,22 @@
+{
+  "voice": {
+    "id": "kw0sLdKrFNCRhdRYGrhU",
+    "name": "Pedro - Spanish Clear Narrator",
+    "locale": "es-ES"
+  },
+  "voiceSettings": {
+    "stability": 0.31,
+    "similarity_boost": 0.78,
+    "style": 0.72,
+    "use_speaker_boost": true,
+    "speed": 1.08
+  },
+  "scenes": [
+    ["¡Empate a uno y última jugada!", "El Rayo tiene la posesión."],
+    ["En Clock Penalty no chutas:", "tú decides cuándo parar el reloj."],
+    ["Cada centésima cuenta.", "Quince con noventa y nueve..."],
+    ["¡Dieciséis exactos!", "¡Doble cero! ¡Gol!"],
+    ["¡El Rayo se pone dos a uno!", "Del empate a la ventaja."],
+    ["Una sola parada puede cambiar el partido.", "Invita a tu amigo a jugar ahora en clockpenalty.com."]
+  ]
+}

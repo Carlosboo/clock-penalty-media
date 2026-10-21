@@ -31,7 +31,6 @@ jobs:
         working-directory: app
         env:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
-          GAMEPLAY_COMMENTATOR_REQUEST: ${{ secrets.GAMEPLAY_COMMENTATOR_REQUEST }}
           GAMEPLAY_APP_DIR: ${{ github.workspace }}/app
         run: |
           mkdir audio

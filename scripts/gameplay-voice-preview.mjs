@@ -179,12 +179,14 @@ async function main() {
   if (!appDir) throw new Error("Missing workflow checkout path.");
   const audioDir = resolve(appDir, "audio");
   const statePath = resolve(audioDir, "state.json");
-  let request;
-  try {
-    request = JSON.parse(process.env.GAMEPLAY_COMMENTATOR_REQUEST ?? "");
-  } catch {
-    throw new Error("Missing or invalid gameplay narration request secret.");
-  }
+  const request = JSON.parse(
+    readFileSync(
+      new URL(
+        process.env.GAMEPLAY_REQUEST_FILE ?? "./gameplay-commentator-request.json",
+        import.meta.url,
+      ),
+    ),
+  );
   mkdirSync(audioDir, { recursive: true });
   const state = { clips: [] };
   const save = () => {
