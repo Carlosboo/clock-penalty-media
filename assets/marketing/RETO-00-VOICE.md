@@ -1,15 +1,19 @@
 # Generacion privada de voz para Reto .00
 
 El workflow manual `Generate private gameplay commentator` genera locucion en
-ElevenLabs sin publicar contenido. Requiere los secretos
-`ELEVENLABS_API_KEY` y `GAMEPLAY_COMMENTATOR_REQUEST` en el repositorio de
-marketing. El guion se mantiene como secreto y no se copia al repo publico.
+ElevenLabs sin publicar contenido. Requiere el secreto `ELEVENLABS_API_KEY` en
+el repositorio de marketing. El guion esta en
+`scripts/gameplay-commentator-request.json`; no contiene datos personales.
 
 El resultado se cifra con la clave publica de esta sesion y se entrega como un
 artefacto de Actions con retencion de dos dias. La clave privada no se guarda
 en el repositorio. No relanzar una ejecucion fallida si una llamada de voz
 pudo haberse procesado: primero inspeccionar el artefacto cifrado y confirmar
 el consumo, ya que no hay reintento automatico.
+El paquete cifrado se actualiza antes y despues de cada peticion. Actions
+intenta conservarlo incluso si falla la generacion; una cancelacion abrupta
+puede impedir su subida. No considerar la ausencia del artefacto prueba de
+que no se consumieron creditos.
 
 Descifrar el artefacto en un directorio privado:
 

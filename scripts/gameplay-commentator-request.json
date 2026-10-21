@@ -12,11 +12,11 @@
     "speed": 1.08
   },
   "scenes": [
-    ["¡Empate a uno y última jugada!", "El Rayo tiene la posesión."],
-    ["En Clock Penalty no chutas:", "tú decides cuándo parar el reloj."],
-    ["Cada centésima cuenta.", "Quince con noventa y nueve..."],
-    ["¡Dieciséis exactos!", "¡Doble cero! ¡Gol!"],
-    ["¡El Rayo se pone dos a uno!", "Del empate a la ventaja."],
-    ["Una sola parada puede cambiar el partido.", "Invita a tu amigo a jugar ahora en clockpenalty.com."]
+    ["¡Empate a uno! ¿Quién lo clava?", "En Clock Penalty no chutas."],
+    ["Paras el reloj.", "Si termina en doble cero, ¡es gol!"],
+    ["El reloj corre...", "¡Atención a esta parada!"],
+    ["¡Dieciséis exactos!", "¡Gooool!"],
+    ["¡El Rayo se pone dos a uno!", "Una centésima cambia el partido."],
+    ["¿Lo clavas tú?", "Invita a tu amigo a jugar ahora en clockpenalty.com."]
   ]
 }

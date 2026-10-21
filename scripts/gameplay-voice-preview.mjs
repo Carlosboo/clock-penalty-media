@@ -1,5 +1,5 @@
 import { createCipheriv, createHash, publicEncrypt, randomBytes, constants } from "node:crypto";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync, renameSync } from "node:fs";
 import { gzipSync } from "node:zlib";
 import { resolve } from "node:path";
 
@@ -52,7 +52,13 @@ export async function generateCommentary({ request, state, key, api, save, outpu
   for (let i = 0; i < texts.length; i++) {
     const text = texts[i];
     const previous = state.clips[i];
-    if (previous?.complete) continue;
+    if (previous?.complete) {
+      const audio = readFileSync(resolve(outputDir, `phrase-${String(i + 1).padStart(2, "0")}.mp3`));
+      if (previous.text !== text || sha256(audio) !== previous.sha256) {
+        throw new Error("Cached narration differs from its verified checkpoint.");
+      }
+      continue;
+    }
     if (previous?.attempted) {
       throw new Error("A previous voice request is uncertain; no automatic retry.");
     }
@@ -189,8 +195,13 @@ async function main() {
   );
   mkdirSync(audioDir, { recursive: true });
   const state = { clips: [] };
+  const publicKey = readFileSync(resolve(appDir, "scripts/gameplay-voice-preview-public.pem"));
+  const encryptedPath = resolve(appDir, "voice-preview.enc.json");
   const save = () => {
     writeFileSync(statePath, JSON.stringify(state, null, 2) + "\n");
+    const encrypted = encryptPreviewPackage({ state, audioDir, publicKey });
+    writeFileSync(`${encryptedPath}.tmp`, JSON.stringify(encrypted));
+    renameSync(`${encryptedPath}.tmp`, encryptedPath);
   };
 
   let safeError;
@@ -212,9 +223,7 @@ async function main() {
     state.failure = safeError;
     save();
   } finally {
-    const publicKey = readFileSync(resolve(appDir, "scripts/gameplay-voice-preview-public.pem"));
-    const encrypted = encryptPreviewPackage({ state, audioDir, publicKey });
-    writeFileSync(resolve(appDir, "voice-preview.enc.json"), JSON.stringify(encrypted));
+    save();
   }
   if (safeError) throw new Error(safeError);
 }
