@@ -172,7 +172,15 @@ async function verifyVoice(key, voiceId) {
     signal: AbortSignal.timeout(30000),
   });
   if (!response.ok) {
-    throw new Error(`ElevenLabs voice access check failed (HTTP ${response.status}); no narration generated.`);
+    const detail = await response.json();
+    const status = detail.detail?.status;
+    if (response.status === 401 && status === "missing_permissions") {
+      console.warn("Voice metadata is unavailable to this restricted key; checking text-to-speech permission with the requested generation.");
+      return;
+    }
+    const safeStatus = typeof status === "string" && /^[a-z_]{1,80}$/.test(status)
+      ? status : "unspecified";
+    throw new Error(`ElevenLabs voice access check failed (HTTP ${response.status}, ${safeStatus}); no narration generated.`);
   }
   const voice = await response.json();
   if (voice.voice_id !== voiceId) throw new Error("ElevenLabs voice access check returned an unexpected voice.");
