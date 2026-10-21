@@ -47,3 +47,18 @@ El renderer valida hashes y alineaciones de voz, reemplaza los datos privados
 del partido antes de escalar, comprueba formato vertical, duracion de 20-25
 segundos y audio, y genera portada, storyboard y fotogramas de revision.
 Preparar el borrador no autoriza publicarlo.
+
+La version narrada exportada dura 24,3 segundos a 1080x1920 y 30 fps, con AAC
+estereo. La parada y la repeticion se temporizan con los clips de la locucion;
+la repeticion se identifica expresamente. Mantiene el CTA solicitado:
+«Invita a tu amigo a jugar ahora en clockpenalty.com».
+El reproductor HTML y los medios quedan en el directorio privado de salida,
+no en el repositorio publico.
+
+Pruebas directamente relacionadas:
+
+```sh
+node --test scripts/gameplay-voice-preview.test.mjs
+python -m unittest discover -s assets/marketing -p 'test_*reto00.py'
+python -m unittest discover -s assets/marketing -p test_gameplay_preview.py
+```

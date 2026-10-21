@@ -165,8 +165,8 @@ async function api(key, voiceId, body) {
   return response.json();
 }
 
-async function verifyVoice(key, voiceId) {
-  const response = await fetch(`https://api.elevenlabs.io/v1/voices/${voiceId}`, {
+export async function verifyVoice(key, voiceId, request = fetch) {
+  const response = await request(`https://api.elevenlabs.io/v1/voices/${voiceId}`, {
     headers: { "xi-api-key": key },
     redirect: "error",
     signal: AbortSignal.timeout(30000),

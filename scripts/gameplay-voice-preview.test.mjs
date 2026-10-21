@@ -14,7 +14,7 @@ import {
 import { gunzipSync } from "node:zlib";
 import test from "node:test";
 
-import { encryptPreviewPackage, generateCommentary } from "./gameplay-voice-preview.mjs";
+import { encryptPreviewPackage, generateCommentary, verifyVoice } from "./gameplay-voice-preview.mjs";
 
 const request = {
   voice: { id: "kw0sLdKrFNCRhdRYGrhU", name: "Pedro", locale: "es-ES" },
@@ -47,6 +47,33 @@ test("commentary request shape has twelve clips and preserves the requested CTA"
   const allText = request.scenes.flat().join(" ");
   assert.equal(request.scenes.flat().length, 12);
   assert.ok(allText.includes("Invita a tu amigo a jugar ahora en clockpenalty.com."));
+});
+
+test("production script explains the rule without claiming a last play or a .99 stop", () => {
+  const production = JSON.parse(readFileSync(new URL("./gameplay-commentator-request.json", import.meta.url)));
+  const script = production.scenes.flat().join(" ");
+  assert.match(script, /doble cero, ¡es gol!/);
+  assert.ok(script.includes("Invita a tu amigo a jugar ahora en clockpenalty.com."));
+  assert.doesNotMatch(script, /última jugada|noventa y nueve|\.99/);
+});
+
+test("catalog permission restriction does not imply text-to-speech is unavailable", async () => {
+  await verifyVoice("test", request.voice.id, async () => ({
+    ok: false,
+    status: 401,
+    json: async () => ({ detail: { status: "missing_permissions" } }),
+  }));
+});
+
+test("an invalid API key stops before any speech generation", async () => {
+  await assert.rejects(
+    verifyVoice("test", request.voice.id, async () => ({
+      ok: false,
+      status: 401,
+      json: async () => ({ detail: { status: "invalid_api_key" } }),
+    })),
+    /401, invalid_api_key/,
+  );
 });
 
 test("incomplete attempted requests are never automatically repeated", async () => {
