@@ -3,7 +3,9 @@
   "items": {
     "reto-00-episodio-1": {
       "container": "17969184104984828",
-      "attempted": "2026-10-21T14:24:24.176Z"
+      "attempted": "2026-10-21T14:24:24.176Z",
+      "mediaId": "17928604170183323",
+      "published": true
     }
   }
 }
