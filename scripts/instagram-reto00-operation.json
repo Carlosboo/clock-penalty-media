@@ -1,0 +1,20 @@
+{
+  "mode": "hold",
+  "domain": "clockpenalty.com",
+  "mediaCommit": "2b87eb472401288fca27cd1224dbc6accd4d2256",
+  "items": [
+    {
+      "key": "reto-00-episodio-1",
+      "kind": "REELS",
+      "file": "reto-00-narrado.mp4",
+      "bytes": 3466938,
+      "sha256": "c7ea7106728beed65b42e43ade7e72e124b088043675e3a503ec75cbdbcffa92",
+      "cover": {
+        "file": "portada-reto-00-narrado.jpg",
+        "bytes": 292769,
+        "sha256": "f34cf94b2b89425a9263ef50a53286807654c344ac6c10fefde12abdd2101ca7"
+      },
+      "caption": "Empate a uno. ¿Quién lo clava? ⚽⏱️\n\nEn Clock Penalty no chutas: paras el reloj. Si termina en .00, ¡es gol!\n\nMira esta parada: del 1–1 al 2–1. ¿Lo clavas tú?\n\nInvita a tu amigo a jugar ahora en clockpenalty.com\nEnlace en el perfil.\n\nReto .00 · Episodio 1\nGameplay de desarrollo, alias ficticios y narración sintética de ElevenLabs.\n\n#ClockPenalty #JuegosDeFutbol #JuegosMoviles"
+    }
+  ]
+}

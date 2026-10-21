@@ -64,3 +64,14 @@ node --test scripts/gameplay-voice-preview.test.mjs
 python -m unittest discover -s assets/marketing -p 'test_*reto00.py'
 python -m unittest discover -s assets/marketing -p test_gameplay_preview.py
 ```
+
+## Publicacion autorizada
+
+El usuario aprobo publicar el MP4 narrado y su portada. El workflow manual
+`Publish approved narrated Reto 00` publica exclusivamente ese reel, sin
+historias ni sustituciones de publicaciones anteriores. El manifiesto es
+`scripts/instagram-reto00-operation.json` y permanece en `hold` en el repo.
+Los medios aprobados se sirven desde un commit inmutable de marketing y se
+verifican por hash. El recibo independiente `reto-00-v1.json`, en la rama
+`instagram-relaunch-state`, impide reutilizar el estado del gameplay anterior.
+No relanzar ante una publicacion incierta sin comprobar ese recibo.
